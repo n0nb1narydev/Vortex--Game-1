@@ -8,6 +8,7 @@ public class Tornado : MonoBehaviour {
     public float ThrowSpeed;
     public float Spin;
     public float Speed;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void OnMouseDown () {
@@ -16,7 +17,8 @@ public class Tornado : MonoBehaviour {
     }
 
     public void OnMouseUp () {
-        velocity += this.transform.forward * ThrowSpeed;
+        rb = GetComponent<Rigidbody> ();
+        rb.AddForce (new Vector3 (9.8f * 25f, 9.8f * 25f));
         dragging = false;
     }
 
@@ -26,13 +28,17 @@ public class Tornado : MonoBehaviour {
     }
 
     void CalculateMovement () {
-        if (transform.position.z <= .6f) {
+        if (transform.position.z <= .5f) {
             transform.position = new Vector3 (transform.position.x, transform.position.y, 0.6f);
         }
-        if (transform.position.x >= 5.5f) {
-            transform.position = new Vector3 (5.5f, transform.position.y, transform.position.z);
-        } else if (transform.position.x <= -5.5f) {
-            transform.position = new Vector3 (-5.5f, transform.position.y, transform.position.z);
+        if (transform.position.y <= 3f)
+        {
+            transform.position = new Vector3(transform.position.x, 3f, transform.position.z);
+        }
+        if (transform.position.x >= 5.4f) {
+            transform.position = new Vector3 (5.4f, transform.position.y, transform.position.z);
+        } else if (transform.position.x <= -5.4f) {
+            transform.position = new Vector3 (-5.4f, transform.position.y, transform.position.z);
         }
 
         if (dragging) {
