@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Tornado : MonoBehaviour
+public class Ball : MonoBehaviour
 {
 	//set position and rotation
 	private Vector3 initialPosition;
@@ -53,8 +54,8 @@ public class Tornado : MonoBehaviour
 	{
 		//apply wind after certain distance
 		float dist = 0f;
-		if (ThrowTornadoController.Instance.target) {
-			dist = (ThrowTornadoController.Instance.target.position.z - transform.position.z);
+		if (ThrowBallController.Instance.target) {
+			dist = (ThrowBallController.Instance.target.position.z - transform.position.z);
 		}
 
 		//if throw is cureve then apply wind
@@ -74,11 +75,11 @@ public class Tornado : MonoBehaviour
 			jumpCoroutine = null;
 		}
 		ballThrowed= flag;
-		if (ThrowTornadoController.Instance.IsGettingDirection)
+		if (ThrowBallController.Instance.IsGettingDirection)
 			isRotate = false;
 		else
 			isRotate = true;
-		throwPos = (ThrowTornadoController.Instance.target.position.z - transform.position.z);
+		throwPos = (ThrowBallController.Instance.target.position.z - transform.position.z);
 	}
 
 
@@ -137,7 +138,7 @@ public class Tornado : MonoBehaviour
 		
 			transform.position = initialPosition;
 
-			if (ThrowTornadoController.Instance.IsGameStart) {
+			if (ThrowBallController.Instance.IsGameStart) {
 
 
 				isRotateLeft = !isRotateLeft;
