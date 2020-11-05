@@ -4,27 +4,25 @@ using UnityEngine.UI;
 
 public class Tornado : MonoBehaviour
 {
-	[SerializeField]
-	private float _speed = 2f;
-	[SerializeField]
-	private Button _launch;
+	// private float _speed = 2f;
+	// [SerializeField]
+	// private Button _launch;
 	private bool _isMoving = false;
+
 
 	private void Start() 
 	{
-
+		this.GetComponent<Rigidbody>().velocity = (ptB.transform.position - transform.position).normalized * speed;
 	}
 
 	void Update()
 	{
-		transform.Translate ( Vector3.up * _speed * Time.deltaTime );
 	}
 
+	// void OnLaunch()
+	// {
+	// 	transform.Translate ( Vector3.up * _speed * Time.deltaTime );
+	// 	_isMoving = true;
+	// }
 
-
-	void MoveUp()
-	{
-
-		_isMoving = true;
-	}
 }
